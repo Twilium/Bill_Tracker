@@ -1,6 +1,6 @@
 require './config/environment'
 
-class UserController < Sinatra::Base
+class UsersController < ApplicationController
     configure do
         set :public_folder, 'public'
         set :views, 'app/views'
