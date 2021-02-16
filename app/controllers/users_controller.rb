@@ -2,7 +2,8 @@ require './config/environment'
 require 'sinatra/flash'
 
 class UsersController < ApplicationController
-  get "users/homepage" do
+  get "/users/homepage" do
+    @user = User.find_by_id(session[:user_id])
     erb :"users/homepage"
   end
 

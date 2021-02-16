@@ -1,2 +1,6 @@
-<%# this page will show a greeting as well as the option to view bills. %>
-<%# it will also show the latest bill with an option to delete or edit %>
+<%# this page will show a greeting as well as the option to view bills if they have any. %>
+<%# it will also show the latest bill(if there is any) with an option to add, delete, or edit %>
+
+<h1>Welcome <%= @user.username%>!</h1>
+
+<a href="/bills/new">Add a Bill</a>
