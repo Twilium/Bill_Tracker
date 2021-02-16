@@ -1,26 +1,15 @@
 <h1>Sign In!</h1>
-<div class="form-container">
-        <form action="/homepage" method="post">
-        <div class="form-group">
-        <label for="username">Username: </label>
-        <br>
-        <input type="text" id="user[username]" name="user[username]" class="form-control">
-        <br>
-        <div class="row g-3 align-items-center">
-  <div class="col-auto">
-    <label for="inputPassword6" class="col-form-label">Password: </label>
+<form action="/signin" method="post">
+  <div class="mb-3">
+    <label for="Username" class="form-label">Username</label>
+    <input type="text" name="user[username]" class="form-control" id="user[username]" aria-describedby="usernameHelp">
   </div>
-  <div class="col-auto">
-    <input type="password" id="inputPassword6" name="user[password]" class="form-control" aria-describedby="passwordHelpInline">
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="password" name="user[password]" class="form-control" id="user[password]">
   </div>
-  <div class="col-auto">
-    <span id="passwordHelpInline" class="form-text">
-      Must be 8-20 characters long.
-    </span>
-  </div>
-</div>
-        </div>
-        <input type="submit" id="submit">
-        </form>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+  <div class="mb-3 form-check">
         <a href="/signup">Sign Up</a>
-    </div>
+  </div>
