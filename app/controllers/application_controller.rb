@@ -1,5 +1,6 @@
 require './config/environment'
 require 'securerandom'
+# require 'sinatra/flash'
 
 class ApplicationController < Sinatra::Base
 
