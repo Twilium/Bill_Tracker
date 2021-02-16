@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
 
   get '/signin' do 
-    erb :"users/signin"
+    erb :"sessions/signin"
   end
 
   post '/homepage' do
