@@ -1,3 +1,8 @@
+<% if flash[:error] %>
+  <div class="errors flash fatal">
+    <h4 class="error"><%= flash[:error] %></h4>
+  </div>
+<% end %>
 <h1>Sign In!</h1>
 <form action="/signin" method="post">
   <div class="mb-3">

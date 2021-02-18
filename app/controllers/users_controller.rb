@@ -2,8 +2,13 @@ require './config/environment'
 require 'sinatra/flash'
 
 class UsersController < ApplicationController
-  get "/users/homepage" do
-    @user = User.find_by_id(session[:user_id])
+  get "/users/:id" do
+    redirect_if_not_logged_in
+    @user = User.find_by_id(params[:id])
+    if current_user != @user
+      redirect "/users/#{current_user.id}"
+    end
+    @bill = @user.bills.last
     erb :"users/homepage"
   end
 
