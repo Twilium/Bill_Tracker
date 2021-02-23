@@ -13,7 +13,11 @@ class UsersController < ApplicationController
   end
 
   get '/signup' do
-    erb :"users/signup"
+    if logged_in?
+      redirect "/users/homepage"
+    else
+      erb :"users/signup"
+    end
   end
 
   post '/signup' do
