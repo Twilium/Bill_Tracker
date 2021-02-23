@@ -1,7 +1,11 @@
 class SessionsController < ApplicationController
 
   get '/signin' do 
-    erb :"sessions/signin.html"
+    if logged_in?
+      redirect "/users/homepage"
+    else
+      erb :"sessions/signin.html"
+    end
   end
 
   post '/signin' do

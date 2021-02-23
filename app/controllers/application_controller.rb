@@ -28,6 +28,7 @@ class ApplicationController < Sinatra::Base
     def redirect_if_not_logged_in
       redirect "/signin" if !logged_in?
     end
+    
 
   end
 
