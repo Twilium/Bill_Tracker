@@ -1,6 +1,6 @@
-<form class="was-validated" action="bill/new" method="post">
+<form class="was-validated" action="/bills" method="post">
   <div class="col-md-4">
-    <label for="validationCustom01" class="form-label">Bill name</label>
+    <label for="validationCustom01" class="form-label">Bill Name</label>
     <input type="text" class="form-control" id="validationCustom01" name="bill[name]" required>
     <div class="valid-feedback">
       Looks good!
@@ -8,30 +8,45 @@
   </div>
   <br>
 
-   <div class="input-group mb-3">
-    <span class="input-group-text">$</span>
-    <input type="text" class="form-control" name="bill[amount]" aria-label="Dollar amount (with dot and two decimal places)">
-   </div>
+   <div class="col-md-4">
+    <label for="validationCustom01" class="form-label">Bill Amount</label>
+    <input type="text" class="form-control" id="validationCustom01" name="bill[amount]" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <br>
 
   <div class="mb-3">
-    <select class="form-select" required aria-label="select example">
-      <option value="">Open this select menu</option>
-      <option value="1">Entertainment</option>
-      <option value="2">Housing</option>
-      <option value="3">Transportation</option>
-      <option value="4">Utilities</option>
+    <select class="form-select" name ="bill[category]" required aria-label="select example">
+      <option value="">Bill Category</option>
+      <option value="Entertainment">Entertainment</option>
+      <option value="Housing">Housing</option>
+      <option value="Transportation">Transportation</option>
+      <option value="Utilities">Utilities</option>
     </select>
-    <div class="invalid-feedback">Example invalid select feedback</div>
   </div>
 
-  <div class="form-check mb-3">
-    <input type="checkbox" class="form-check-input" name="bill[recurring]" id="validationFormCheck1" required>
-    <label class="form-check-label" for="validationFormCheck1">Recurring?</label>
-    <div class="invalid-feedback">Example invalid feedback text</div>
+  <div class="mb-3">
+    <select class="form-select" name ="bill[recurring]" required aria-label="select example">
+      <option value="">Recurring?</option>
+      <option value="true">Yes</option>
+      <option value="false">No</option>
+    </select>
+      <div class="invalid-feedback">Example invalid select feedback</div>
   </div>
+
+  <div class="col-md-4">
+    <label for="validationCustom01" class="form-label">Bill Due Date (yyyy-mm-dd)</label>
+    <input type="text" class="form-control" id="validationCustom01" name="bill[due_date]" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <br>
 
 
   <div class="mb-3">
-    <button class="btn btn-primary" type="submit" disabled>Submit</button>
+    <button class="btn btn-primary" type="submit">Submit</button>
   </div>
 </form>
