@@ -1,9 +1,11 @@
 require './config/environment'
 require 'securerandom'
+require_relative '../helpers/application_helper'
 # require 'sinatra/flash'
 
 class ApplicationController < Sinatra::Base
-
+  include ApplicationHelper
+  
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
@@ -13,7 +15,11 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    erb :welcome
+    if logged_in?
+      redirect "/users/homepage"
+    else
+      erb :welcome
+    end
   end
 
   helpers do
@@ -28,8 +34,6 @@ class ApplicationController < Sinatra::Base
     def redirect_if_not_logged_in
       redirect "/signin" if !logged_in?
     end
-    
-
   end
 
 end
