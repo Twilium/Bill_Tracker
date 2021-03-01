@@ -7,14 +7,18 @@
   <td>Due Date</td>
   </tr>
 
-  <% @current_user_bills.each do |bill| %>
   <tr>
-  <td><%= bill.name %></td>
-  <td><%= bill.amount %></td>
-  <td><%= bill.category %></td>
-  <td><a href="/bills/<%=bill.id%>/recurring"><i class="<%=recurring_or_not(bill)%>"></i></td>
-  <td><%= bill.due_date %></td>
-  <td><a href="bills/<%=bill.id%>/edit">Edit </a></td>
+  <td><%= @bill.name %></td>
+  <td><%= @bill.amount %></td>
+  <td><%= @bill.category %></td>
+  <td><a href="/bills/<%=@bill.id%>/recurring"><i class="<%=recurring_or_not(@bill)%>"></i></td>
+  <td><%= @bill.due_date %></td>
+  <td><a href="/bills/<%=@bill.id%>/edit">Edit </a></td>
+  <td>
+  <form action="/bills/<%=@bill.id%>" method="POST">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input id="delete" type="submit" value="Delete">
+  </form>
+  </td>
   </tr>
-  <%end%>
 </table>

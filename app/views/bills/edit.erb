@@ -3,11 +3,11 @@
     <h4 class="error"><%= flash[:error] %></h4>
   </div>
 <% end %>
-<form class="was-validated" action="/bills" method="post">
+<form class="was-validated" action="/bills/<%=@bill.id%>" method="patch">
 <input id="hidden" type="hidden" name="_method" value="patch">
   <div class="col-md-4">
     <label for="validationCustom01" class="form-label">Bill Name</label>
-    <input type="text" class="form-control" id="validationCustom01" name="bill[name]" required>
+    <input type="text" class="form-control" value="<%=@bill.name%>" id="validationCustom01" name="bill[name]" required>
     <div class="valid-feedback">
       Looks good!
     </div>
@@ -16,7 +16,7 @@
 
    <div class="col-md-4">
     <label for="validationCustom01" class="form-label">Bill Amount</label>
-    <input type="text" class="form-control" id="validationCustom01" name="bill[amount]" required>
+    <input type="text" class="form-control" value="<%=@bill.amount%>" id="validationCustom01" name="bill[amount]" required>
     <div class="valid-feedback">
       Looks good!
     </div>
@@ -39,12 +39,11 @@
       <option value="true">Yes</option>
       <option value="false">No</option>
     </select>
-      <div class="invalid-feedback">Example invalid select feedback</div>
   </div>
 
   <div class="col-md-4">
     <label for="validationCustom01" class="form-label">Bill Due Date (dd-mm-yyyy)</label>
-    <input type="text" class="form-control" id="validationCustom01" name="bill[due_date]" required>
+    <input type="text" class="form-control" value="<%=@bill.due_date%>" id="validationCustom01" name="bill[due_date]" required>
     <div class="valid-feedback">
       Looks good!
     </div>

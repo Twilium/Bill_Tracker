@@ -12,8 +12,10 @@ class BillsController < ApplicationController
       end
 
       get '/bills' do
+        binding.pry
+        redirect_if_not_logged_in
         @current_user_bills = current_user.bills
-        erb :"/bills/show"
+        erb :"/bills/index"
       end
 
       post '/bills' do
@@ -37,18 +39,34 @@ class BillsController < ApplicationController
         redirect "/bills"
       end
 
+      get '/bills/:id' do
+        binding.pry
+        @bill = Bill.find_by_id(params[:id])
+        erb :"/bills/show"
+      end
+
       get '/bills/:id/edit' do
+        redirect_if_not_logged_in
         @bill = Bill.find_by(id: params[:id])
         erb :"/bills/edit"
       end
     
-      patch '/bills' do
+      patch '/bills/:id' do
+        redirect_if_not_logged_in
+        binding.pry
         bill = Bill.find_by(id: params[:id])
         bill.update(name: params[:bill][:name])
-        bill.update(name: params[:bill][:amount])
-        bill.update(name: params[:bill][:category])
-        bill.update(name: params[:bill][:recurring])
-        bill.update(name: params[:bill][:due_date])
+        bill.update(amount: params[:bill][:amount])
+        bill.update(category: params[:bill][:category])
+        bill.update(recurring: params[:bill][:recurring])
+        bill.update(due_date: params[:bill][:due_date])
         redirect "/bills"
+      end
+
+      delete '/bills/:id' do
+        binding.pry
+        bill = Bill.find_by(id: params[:id])
+        bill.destroy
+        redirect '/bills'
       end
 end
