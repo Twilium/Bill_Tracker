@@ -3,7 +3,7 @@
     <h4 class="error"><%= flash[:error] %></h4>
   </div>
 <% end %>
-<form class="was-validated" action="/bills/<%=@bill.id%>" method="patch">
+<form class="was-validated" action="/bills/<%=@bill.id%>" method="post">
 <input id="hidden" type="hidden" name="_method" value="patch">
   <div class="col-md-4">
     <label for="validationCustom01" class="form-label">Bill Name</label>

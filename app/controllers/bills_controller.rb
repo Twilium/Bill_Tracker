@@ -1,10 +1,6 @@
 require './config/environment'
 
 class BillsController < ApplicationController
-    configure do
-        set :public_folder, 'public'
-        set :views, 'app/views'
-      end
 
       get '/bills/new' do
         redirect_if_not_logged_in
@@ -12,7 +8,6 @@ class BillsController < ApplicationController
       end
 
       get '/bills' do
-        binding.pry
         redirect_if_not_logged_in
         @current_user_bills = current_user.bills
         erb :"/bills/index"
@@ -40,31 +35,41 @@ class BillsController < ApplicationController
       end
 
       get '/bills/:id' do
-        binding.pry
+        redirect_if_not_logged_in
         @bill = Bill.find_by_id(params[:id])
-        erb :"/bills/show"
+        if @bill != nil
+          if @bill.user_id == current_user.id
+            erb :"/bills/show"
+          else
+            redirect "/users/homepage"
+          end
+        else
+          redirect "/bills"
+        end
       end
 
       get '/bills/:id/edit' do
         redirect_if_not_logged_in
         @bill = Bill.find_by(id: params[:id])
-        erb :"/bills/edit"
+        if @bill != nil
+          if @bill.user_id == current_user.id
+            erb :"/bills/edit"
+          else
+            redirect "/users/homepage"
+          end
+        else
+          redirect "/bills"
+        end
       end
     
       patch '/bills/:id' do
         redirect_if_not_logged_in
-        binding.pry
         bill = Bill.find_by(id: params[:id])
-        bill.update(name: params[:bill][:name])
-        bill.update(amount: params[:bill][:amount])
-        bill.update(category: params[:bill][:category])
-        bill.update(recurring: params[:bill][:recurring])
-        bill.update(due_date: params[:bill][:due_date])
-        redirect "/bills"
+        bill.update(params[:bill])
+        redirect "/bills/#{bill.id}"
       end
 
       delete '/bills/:id' do
-        binding.pry
         bill = Bill.find_by(id: params[:id])
         bill.destroy
         redirect '/bills'
