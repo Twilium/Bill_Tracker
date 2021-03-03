@@ -2,11 +2,11 @@
 <%# it will also show the latest bill(if there is any) with an option to add, delete, or edit %>
 
 <h1>Welcome <%= @user.username%>!</h1>
-
+<% if @bill != nil  %>
+<h2><em>Latest Bill Added</em></h2>
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">Latest Bill Added</th>
       <th scope="col">Name</th>
       <th scope="col">Amount</th>
       <th scope="col">Category</th>
@@ -16,7 +16,6 @@
   </thead>
   <tbody>
     <tr>
-      <td></td>
       <td><%= @bill.name %></td>
       <td><%= @bill.amount %></td>
       <td><%= @bill.category %></td>
@@ -26,6 +25,10 @@
   </tbody>
 </table>
 
+<%else  %>
+<h3>You don't currently have any bills. Try adding a bill now!</h3>
+
+<%end  %>
 
 <a href="/bills">See All Bills</a><br>
 <a href="/bills/new">Add a Bill</a><br>

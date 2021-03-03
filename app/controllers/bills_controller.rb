@@ -65,8 +65,16 @@ class BillsController < ApplicationController
       patch '/bills/:id' do
         redirect_if_not_logged_in
         bill = Bill.find_by(id: params[:id])
-        bill.update(params[:bill])
-        redirect "/bills/#{bill.id}"
+        if bill != nil
+          if bill.user_id == current_user.id
+            bill.update(params[:bill])
+            redirect "/bills/#{bill.id}"
+          else
+            redirect "/bills"
+          end
+        else
+          redirect "/bills"
+        end
       end
 
       delete '/bills/:id' do
