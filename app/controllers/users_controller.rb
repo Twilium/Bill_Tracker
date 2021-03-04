@@ -32,4 +32,14 @@ class UsersController < ApplicationController
     end
   end
 
+  get '/bills/:id/homepagerecurring' do
+    redirect_if_not_logged_in
+    bill = Bill.find_by_id(params[:id])
+    if bill.user == current_user
+      bill.recurring = !bill.recurring
+      bill.save
+    end
+    redirect "/users/homepage"
+  end
+
 end

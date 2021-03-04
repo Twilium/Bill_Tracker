@@ -16,7 +16,7 @@
       <td><%= @bill.name %></td>
       <td><%= @bill.amount %></td>
       <td><%= @bill.category %></td>
-      <td><%= @bill.recurring %></td>
+      <td><a href="/bills/<%=@bill.id%>/homepagerecurring"><i class="<%=recurring_or_not(@bill)%>"></i></td>
       <td><%= @bill.due_date %></td>
     </tr>
   </tbody>
