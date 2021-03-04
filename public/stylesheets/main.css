@@ -20,12 +20,21 @@
   }
 
   .front_page_container {
-    background-image: url('public/images/bills.jpg');
+    background-image: url('/images/bills.jpg');
     background-color: lightgray;
+    width: 100%;
+    height: 50vh;
+    background-size: cover;
+    background-position: center;
   }
-
+  .front_page_container h1 {
+    color: darkturquoise;
+  }
+  .front_page_container p {
+    color: lightyellow;
+  }
   .wrapper {
-    background: #fff;
+    background: lightgray;
     -moz-box-shadow: 0 0 10px rgba(0,0,0,.3);
     -webkit-box-shadow: 0 0 10px rgba(0,0,0,.3);
     box-shadow: 0 0 10px rgba(0,0,0,.3);
