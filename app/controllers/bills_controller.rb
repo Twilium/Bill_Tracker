@@ -67,8 +67,13 @@ class BillsController < ApplicationController
         bill = Bill.find_by(id: params[:id])
         if bill != nil
           if bill.user_id == current_user.id
-            bill.update(params[:bill])
-            redirect "/bills/#{bill.id}"
+            if bill.update(params[:bill])
+              flash[:success] = "Bill successfully updated!"
+              redirect "/bills/#{bill.id}"
+            else
+              flash[:error] = "Bill was unsuccessfully updated, please try again"
+              redirect "/bills/#{bill.id}/edit"
+            end
           else
             redirect "/bills"
           end
