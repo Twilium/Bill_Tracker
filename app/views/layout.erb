@@ -21,6 +21,11 @@
     <h4 class="error"><%= flash[:error] %></h4>
   </div>
 <% end %>
+<% if flash[:success] %>
+  <div class="success">
+    <h4 class="success"><%= flash[:success] %></h4>
+  </div>
+<% end %>
         <%= yield %>
 
       <footer class="branding">
