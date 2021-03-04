@@ -20,6 +20,7 @@
   }
 
   .front_page_container {
+    background-image: url('public/images/bills.jpg');
     background-color: lightgray;
   }
 
