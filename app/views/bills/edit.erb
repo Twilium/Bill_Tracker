@@ -19,20 +19,18 @@
   <br>
 
   <div class="mb-3">
-    <select class="form-select" name ="bill[category]" required aria-label="select example">
-      <option value="">Bill Category</option>
-      <option value="Entertainment">Entertainment</option>
-      <option value="Housing">Housing</option>
-      <option value="Transportation">Transportation</option>
-      <option value="Utilities">Utilities</option>
+    <select class="form-select" id="bill-category" name ="bill[category]" required aria-label="select example">
+      <option value="<%= @bill.category%>"><%= @bill.category%></option>
+      <% @bill.remaining_categories.each do |category| %>
+        <option value="<%= category%>"><%=category%></option>
+      <%end%>  
     </select>
   </div>
 
   <div class="mb-3">
-    <select class="form-select" name ="bill[recurring]" required aria-label="select example">
-      <option value="">Recurring?</option>
-      <option value="true">Yes</option>
-      <option value="false">No</option>
+    <select class="form-select" id="bill-recurring" name ="bill[recurring]" required aria-label="select example">
+      <option value="true" <%= "selected" if @bill.recurring%>>Yes</option>
+      <option value="false" <%= "selected" unless @bill.recurring%>>No</option>
     </select>
   </div>
 
