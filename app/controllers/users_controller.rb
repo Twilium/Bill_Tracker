@@ -42,4 +42,44 @@ class UsersController < ApplicationController
     redirect "/users/homepage"
   end
 
+  get '/users/:id/edit' do
+    redirect_if_not_logged_in
+    @user = User.find_by(id: params[:id])
+    if @user != nil
+      if @user == current_user
+        erb :"/users/edit"
+      else
+        redirect "/users/homepage"
+      end
+    else
+      redirect "/users/homepage"
+    end
+  end
+
+  patch '/bills/:id' do
+    redirect_if_not_logged_in
+    user = user.find_by(id: params[:id])
+    if user != nil
+      if user == current_user
+        if user.update(params[:user])
+          flash[:success] = "User successfully updated!"
+          redirect "/users/#{user.id}"
+        else
+          flash[:error] = "User was unsuccessfully updated, please try again"
+          redirect "/users/#{user.id}/edit"
+        end
+      else
+        redirect "/users/homepage"
+      end
+    else
+      redirect "/users/homepage"
+    end
+  end
+
+  delete '/users/:id' do
+    user = User.find_by(id: params[:id])
+    user.destroy
+    redirect '/'
+  end
+
 end
